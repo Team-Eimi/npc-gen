@@ -17,7 +17,13 @@
         "Ask again later",
         "Divine Female",
         "Omega",
-        "Guy"
+        "Guy",
+        "Alpha Male",
+        "Alpha Female",
+        "Beta Male",
+        "Beta Female",
+        "Male",
+        "Female"
     ],
     "name": [
         "A",
