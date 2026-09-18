@@ -25,7 +25,7 @@
         "Male",
         "Female"
     ],
-    "name": [
+    "first letter of name": [
         "A",
         "A",
         "B",
@@ -205,15 +205,25 @@
     ],
     "backstory": {
         "alignment": [
-            "lawful good",
-            "neutral good",
-            "chaotic good",
-            "lawful neutral",
-            "true neutral",
-            "chaotic neutral",
-            "lawful evil",
-            "neutral evil",
-            "chaotic evil"
+            "good", 
+            "good", 
+            "good", 
+            "neutral", 
+            "self-serving", 
+            "true neutral", 
+            "pure good", 
+            "chaotic", 
+            "complex", 
+            "evil", 
+            "pure evil", 
+            "god complex", 
+            "savior complex", 
+            "normal guy", 
+            "neutral", 
+            "bad", 
+            "lawful", 
+            "rebel", 
+            "product of their environment"
         ],
         "connection": [
             "mortal enemy",
