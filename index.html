@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPC Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>NPC Generator!</h1>
+    <h2>Generate All</h2>
+    <button id="generate-all-btn" class="btn">Generate All</button>
+    <button id="reset-all-btn" class="btn btn-secondary">Reset</button>
+    <div id="generate-all-result">
+      <div id="generate-all-status"></div>
+    </div>
+
+    <h2>Generate Personality</h2>
+    <button id="personality-btn" class="btn">Generate Personality</button>
+    <div id="personality-result">
+      <p id="personality-status"></p>
+    </div>
+    
+    <h2>Generate Image</h2>
+    <button id="generate-btn" class="btn">Generate Image</button>
+    <div id="result">
+      <img id="npc-image" src="" alt="Generated NPC" hidden>
+      <p id="status"></p>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
