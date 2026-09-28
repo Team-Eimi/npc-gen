@@ -2,6 +2,8 @@ const IMAGES_FOLDER = "images/Random_character_generator";
 const MANIFEST_URL = "images/manifest.json";
 const PERSONALITY_URL = "personality.json";
 const ALL_URL = "all.json";
+const TEXTPOST_FOLDER = "images/textpost";
+const TEXTPOST_MANIFEST_URL = "images/textpost-manifest.json";
 
 const button = document.getElementById("generate-btn");
 const imageEl = document.getElementById("npc-image");
@@ -11,6 +13,9 @@ const personalityStatusEl = document.getElementById("personality-status");
 const allButton = document.getElementById("generate-all-btn");
 const allStatusEl = document.getElementById("generate-all-status");
 const resetAllButton = document.getElementById("reset-all-btn");
+const textpostButton = document.getElementById("textpost-btn");
+const textpostImageEl = document.getElementById("textpost-image");
+const textpostStatusEl = document.getElementById("textpost-status");
 
 // caches jsonUrl -> parsed data, so repeated clicks don't refetch
 const jsonCache = new Map();
@@ -124,6 +129,21 @@ async function generateRandomAll() {
   }
 }
 
+async function showRandomTextpost() {
+  textpostButton.disabled = true;
+  textpostStatusEl.textContent = "";
+  try {
+    const files = await loadList(TEXTPOST_MANIFEST_URL);
+    textpostImageEl.src = `${TEXTPOST_FOLDER}/${encodeURIComponent(pickRandom(files))}`;
+    textpostImageEl.hidden = false;
+  } catch (err) {
+    textpostStatusEl.textContent = err.message;
+    textpostImageEl.hidden = true;
+  } finally {
+    textpostButton.disabled = false;
+  }
+}
+
 function resetAll() {
   allStatusEl.textContent = "";
 }
@@ -132,3 +152,4 @@ button.addEventListener("click", generateRandomImage);
 personalityButton.addEventListener("click", generateRandomPersonality);
 allButton.addEventListener("click", generateRandomAll);
 resetAllButton.addEventListener("click", resetAll);
+textpostButton.addEventListener("click", showRandomTextpost);

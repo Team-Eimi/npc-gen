@@ -3,14 +3,21 @@
 const fs = require("fs");
 const path = require("path");
 
-const IMAGES_DIR = path.join(__dirname, "images/Random_character_generator");
-const MANIFEST_PATH = path.join(__dirname, "images/manifest.json");
 const EXTENSIONS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]);
 
-const files = fs
-  .readdirSync(IMAGES_DIR)
-  .filter((f) => EXTENSIONS.has(path.extname(f).toLowerCase()))
-  .sort();
+const TARGETS = [
+  ["images/Random_character_generator", "images/manifest.json"],
+  ["images/textpost", "images/textpost-manifest.json"],
+];
 
-fs.writeFileSync(MANIFEST_PATH, JSON.stringify(files, null, 2) + "\n");
-console.log(`Wrote ${files.length} entries to ${MANIFEST_PATH}`);
+for (const [dir, manifest] of TARGETS) {
+  const imagesDir = path.join(__dirname, dir);
+  const manifestPath = path.join(__dirname, manifest);
+  const files = fs
+    .readdirSync(imagesDir)
+    .filter((f) => EXTENSIONS.has(path.extname(f).toLowerCase()))
+    .sort();
+
+  fs.writeFileSync(manifestPath, JSON.stringify(files, null, 2) + "\n");
+  console.log(`Wrote ${files.length} entries to ${manifestPath}`);
+}
