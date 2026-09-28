@@ -15,6 +15,10 @@ body {
 
 main {
   text-align: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -59,6 +63,38 @@ main {
 
 #status {
   color: #f87171;
+}
+
+#textpost-result {
+  margin-top: 2rem;
+}
+
+#textpost-image {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+#textpost-image[hidden] {
+  display: none;
+}
+
+#textpost-status {
+  color: #f87171;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 0.5rem;
+  }
+
+  #textpost-image {
+    border-radius: 0.5rem;
+  }
 }
 
 #generate-all-status {
