@@ -23,7 +23,9 @@
         "Beta Male",
         "Beta Female",
         "Male",
-        "Female"
+        "Female",
+        "Transmale",
+        "Transfemale"
     ],
     "first letter of name": [
         "A",
