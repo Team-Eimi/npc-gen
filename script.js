@@ -16,6 +16,17 @@ const resetAllButton = document.getElementById("reset-all-btn");
 const textpostButton = document.getElementById("textpost-btn");
 const textpostImageEl = document.getElementById("textpost-image");
 const textpostStatusEl = document.getElementById("textpost-status");
+const burstButton = document.getElementById("burst-btn");
+const burstGridEl = document.getElementById("burst-grid");
+const burstStatusEl = document.getElementById("burst-status");
+const BURST_CATEGORIES = [
+  "Head shape",
+  "Eyes",
+  "Nose",
+  "Mouth",
+  "Eyebrows",
+  "Misc detail",
+];
 
 // caches jsonUrl -> parsed data, so repeated clicks don't refetch
 const jsonCache = new Map();
@@ -144,6 +155,34 @@ async function showRandomTextpost() {
   }
 }
 
+async function generateBurstImages() {
+  burstButton.disabled = true;
+  burstStatusEl.textContent = "";
+  try {
+    const files = await loadList(MANIFEST_URL);
+    const picks = pickMultipleRandom(files, BURST_CATEGORIES.length);
+    const cards = BURST_CATEGORIES.map((category, index) => {
+      const card = document.createElement("figure");
+      const image = document.createElement("img");
+      const caption = document.createElement("figcaption");
+
+      image.src = `${IMAGES_FOLDER}/${encodeURIComponent(picks[index])}`;
+      image.alt = `${category} reference`;
+      caption.textContent = category;
+      card.append(image, caption);
+      return card;
+    });
+
+    burstGridEl.replaceChildren(...cards);
+    burstGridEl.hidden = false;
+  } catch (err) {
+    burstStatusEl.textContent = err.message;
+    burstGridEl.hidden = true;
+  } finally {
+    burstButton.disabled = false;
+  }
+}
+
 function resetAll() {
   allStatusEl.textContent = "";
 }
@@ -153,3 +192,4 @@ personalityButton.addEventListener("click", generateRandomPersonality);
 allButton.addEventListener("click", generateRandomAll);
 resetAllButton.addEventListener("click", resetAll);
 textpostButton.addEventListener("click", showRandomTextpost);
+burstButton.addEventListener("click", generateBurstImages);

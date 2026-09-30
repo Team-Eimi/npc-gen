@@ -65,6 +65,41 @@ main {
   color: #f87171;
 }
 
+#burst-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+#burst-grid[hidden] {
+  display: none;
+}
+
+#burst-grid figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+#burst-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+#burst-grid figcaption {
+  padding: 0.65rem;
+  font-weight: 700;
+}
+
+#burst-status {
+  color: #f87171;
+}
+
 #textpost-result {
   margin-top: 2rem;
 }
