@@ -68,8 +68,14 @@ function pickMultipleRandom(list, count) {
 }
 
 // arrays pick one value; nested objects (like "backstory") pick one value per subcategory
+// { "pick": [...], "then": { ... } } picks one value, then rolls a sub-list only for that value
 function pickFromNode(node) {
   if (Array.isArray(node)) return pickRandom(node);
+  if (node && typeof node === "object" && "pick" in node && "then" in node) {
+    const choice = pickRandom(node.pick);
+    const subList = node.then[choice];
+    return Array.isArray(subList) ? `${choice} (${pickRandom(subList)})` : choice;
+  }
   if (node && typeof node === "object") {
     const picked = {};
     for (const [key, value] of Object.entries(node)) {
