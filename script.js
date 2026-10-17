@@ -1,6 +1,7 @@
 const IMAGES_FOLDER = "images/Random_character_generator";
 const MANIFEST_URL = "images/manifest.json";
 const PERSONALITY_URL = "personality.json";
+const PROFESSIONS_URL = "professions.json";
 const ALL_URL = "all.json";
 const TEXTPOST_FOLDER = "images/textpost";
 const TEXTPOST_MANIFEST_URL = "images/textpost-manifest.json";
@@ -10,6 +11,8 @@ const imageEl = document.getElementById("npc-image");
 const statusEl = document.getElementById("status");
 const personalityButton = document.getElementById("personality-btn");
 const personalityStatusEl = document.getElementById("personality-status");
+const professionButton = document.getElementById("profession-btn");
+const professionStatusEl = document.getElementById("profession-status");
 const allButton = document.getElementById("generate-all-btn");
 const allStatusEl = document.getElementById("generate-all-status");
 const resetAllButton = document.getElementById("reset-all-btn");
@@ -122,6 +125,18 @@ async function generateRandomPersonality() {
   }
 }
 
+async function generateRandomProfession() {
+  professionButton.disabled = true;
+  try {
+    const professions = await loadList(PROFESSIONS_URL);
+    professionStatusEl.textContent = pickRandom(professions);
+  } catch (err) {
+    professionStatusEl.textContent = err.message;
+  } finally {
+    professionButton.disabled = false;
+  }
+}
+
 async function generateRandomAll() {
   allButton.disabled = true;
   allStatusEl.textContent = "";
@@ -189,6 +204,7 @@ function resetAll() {
 
 button.addEventListener("click", generateRandomImage);
 personalityButton.addEventListener("click", generateRandomPersonality);
+professionButton.addEventListener("click", generateRandomProfession);
 allButton.addEventListener("click", generateRandomAll);
 resetAllButton.addEventListener("click", resetAll);
 textpostButton.addEventListener("click", showRandomTextpost);
